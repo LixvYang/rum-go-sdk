@@ -15,6 +15,7 @@ import (
 	"github.com/lixvyang/rum-sdk-go/sdk/base"
 	"github.com/lixvyang/rum-sdk-go/sdk/group"
 	"github.com/lixvyang/rum-sdk-go/sdk/groups"
+	"github.com/lixvyang/rum-sdk-go/sdk/node"
 )
 
 // APIClient manages communication with the rum API v1.0.0
@@ -36,7 +37,7 @@ type APIClient struct {
 
 	// ManagementApi *ManagementApiService
 
-	// NodeApi *NodeApiService
+	NodeApi *node.NodeApiService
 
 	// ToolsApi *ToolsApiService
 
@@ -58,12 +59,12 @@ func New(cfg *base.Configuration) *APIClient {
 	c.AppsApi = apps.New(baseCli)
 	c.GroupApi = group.New(baseCli)
 	c.GroupsApi = groups.New(baseCli)
+	c.NodeApi = node.New(baseCli)
 	// API Services
 	// c.ChainApi = (*ChainApiService)(&c.common)
 	// c.KeystoreApi = (*KeystoreApiService)(&c.common)
 	// c.LightNodeApi = (*LightNodeApiService)(&c.common)
 	// c.ManagementApi = (*ManagementApiService)(&c.common)
-	// c.NodeApi = (*NodeApiService)(&c.common)
 	// c.ToolsApi = (*ToolsApiService)(&c.common)
 	// c.UserApi = (*UserApiService)(&c.common)
 

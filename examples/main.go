@@ -17,4 +17,11 @@ func main() {
 		panic(err)
 	}
 	fmt.Printf("%+v", resp)
+
+	respp, _, err := cli.NodeApi.ApiV1NetworkGet(context.Background())
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("%+v", respp)
+
 }
