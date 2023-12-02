@@ -15,9 +15,10 @@ import (
 	_nethttp "net/http"
 	_neturl "net/url"
 	"reflect"
+	"strings"
+
 	"github.com/lixvyang/rum-sdk-go/sdk/base"
 	"github.com/lixvyang/rum-sdk-go/sdk/model"
-	"strings"
 
 	"github.com/antihax/optional"
 )
@@ -40,10 +41,10 @@ type AppsApiService service
 
 // AppsApiAppApiV1GroupGroupIdContentGetOpts Optional parameters for the method 'AppApiV1GroupGroupIdContentGet'
 type AppsApiAppApiV1GroupGroupIdContentGetOpts struct {
-	IncludeStartTrx optional.String
-	Num             optional.Int32
-	Reverse         optional.String
-	Senders         optional.Interface
+	IncludeStartTrx optional.Bool
+	Num             optional.Int64
+	Reverse         optional.Bool
+	Senders         optional.String
 	StartTrx        optional.String
 }
 
@@ -62,14 +63,14 @@ Get contents in a group
 
 @return [][]PbTrx
 */
-func (a *AppsApiService) AppApiV1GroupGroupIdContentGet(ctx _context.Context, groupId string, groupId2 string, localVarOptionals *AppsApiAppApiV1GroupGroupIdContentGetOpts) ([][]model.PbTrx, *_nethttp.Response, error) {
+func (a *AppsApiService) AppApiV1GroupGroupIdContentGet(ctx _context.Context, groupId string, groupId2 string, localVarOptionals *AppsApiAppApiV1GroupGroupIdContentGetOpts) ([]model.ApiGroupContent, *_nethttp.Response, error) {
 	var (
 		localVarHTTPMethod   = _nethttp.MethodGet
 		localVarPostBody     interface{}
 		localVarFormFileName string
 		localVarFileName     string
 		localVarFileBytes    []byte
-		localVarReturnValue  [][]model.PbTrx
+		localVarReturnValue  []model.ApiGroupContent
 	)
 
 	// create path and map variables

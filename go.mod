@@ -1,6 +1,6 @@
 module github.com/lixvyang/rum-sdk-go
 
-go 1.21.1
+go 1.19
 
 require (
 	github.com/antihax/optional v1.0.0
