@@ -13,35 +13,30 @@ import (
 
 	"github.com/lixvyang/rum-sdk-go/sdk/apps"
 	"github.com/lixvyang/rum-sdk-go/sdk/base"
+	"github.com/lixvyang/rum-sdk-go/sdk/chain"
 	"github.com/lixvyang/rum-sdk-go/sdk/group"
 	"github.com/lixvyang/rum-sdk-go/sdk/groups"
+	"github.com/lixvyang/rum-sdk-go/sdk/keystore"
+	"github.com/lixvyang/rum-sdk-go/sdk/lightnode"
+	"github.com/lixvyang/rum-sdk-go/sdk/manager"
 	"github.com/lixvyang/rum-sdk-go/sdk/node"
+	"github.com/lixvyang/rum-sdk-go/sdk/tools"
+	"github.com/lixvyang/rum-sdk-go/sdk/user"
 )
 
 // APIClient manages communication with the rum API v1.0.0
 // In most cases there should be only one, shared, APIClient.
 type APIClient struct {
-	// API Services
-
-	AppsApi *apps.AppsApiService
-
-	// ChainApi *ChainApiService
-
-	GroupApi *group.GroupApiService
-
-	GroupsApi *groups.GroupsApiService
-
-	// KeystoreApi *KeystoreApiService
-
-	// LightNodeApi *LightNodeApiService
-
-	// ManagementApi *ManagementApiService
-
-	NodeApi *node.NodeApiService
-
-	// ToolsApi *ToolsApiService
-
-	// UserApi *UserApiService
+	AppsApi       *apps.AppsApiService
+	ChainApi      *chain.ChainApiService
+	GroupApi      *group.GroupApiService
+	GroupsApi     *groups.GroupsApiService
+	KeystoreApi   *keystore.KeystoreApiService
+	LightNodeApi  *lightnode.LightNodeApiService
+	ManagementApi *manager.ManagementApiService
+	NodeApi       *node.NodeApiService
+	ToolsApi      *tools.ToolsApiService
+	UserApi       *user.UserApiService
 }
 
 // NewAPIClient creates a new API client. Requires a userAgent string describing your application.
@@ -60,13 +55,12 @@ func New(cfg *base.Configuration) *APIClient {
 	c.GroupApi = group.New(baseCli)
 	c.GroupsApi = groups.New(baseCli)
 	c.NodeApi = node.New(baseCli)
-	// API Services
-	// c.ChainApi = (*ChainApiService)(&c.common)
-	// c.KeystoreApi = (*KeystoreApiService)(&c.common)
-	// c.LightNodeApi = (*LightNodeApiService)(&c.common)
-	// c.ManagementApi = (*ManagementApiService)(&c.common)
-	// c.ToolsApi = (*ToolsApiService)(&c.common)
-	// c.UserApi = (*UserApiService)(&c.common)
+	c.ManagementApi = manager.New(baseCli)
+	c.ChainApi = chain.New(baseCli)
+	c.KeystoreApi = keystore.New(baseCli)
+	c.LightNodeApi = lightnode.New(baseCli)
+	c.ToolsApi = tools.New(baseCli)
+	c.UserApi = user.New(baseCli)
 
 	return c
 }
